@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/64719ba10e.js" crossorigin="anonymous"></script>
+    <script src="./index.js" defer></script>
+    <title>WeebList</title>
+</head>
+<body>
+    <div class="wrapper" id="wrapper">
+    <header class="container">
+        <nav class="nav-bar container">
+            <div class="logo">WEEB-LIST</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+                <li class="nav-item"><a href="./register.html" class="nav-link">SIGN IN</a></li>
+                <li class="nav-item"><a href="#" class="nav-link fav-btn">FAVORITES</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="recommended-sect container" id="recommended-slider"data-carousel>
+        <div id="slider" data-slides>
+            <button class="carousel-button prev" data-carousel-button="prev">&#8656</button>
+            <button class="carousel-button next" data-carousel-button="next">&#8658</button>
+        </div>
+    </section>
+        
+    
+    <section class="full-list">
+        <div class="search-box container">
+            <input type="text" id="search-bar" placeholder="Search...">
+        <div class="filter-box">
+            <select name="genre" id="genre-dropdown" class="filter-dropdown">
+                <option value="">No Filter</option>
+                <option value="Action">Action</option>
+                <option value="Award%20Winning">Award Winning</option>
+                <option value="Suspense">Suspense</option>
+                <option value="Horror">Horror</option>
+                <option value="Ecchi">Ecchi</option>
+                <option value="Avant Garde">Avant Garde</option>
+                <option value="Sports">Sports</option>
+                <option value="Supernatural">Supernatural</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Gourmet">Gourmet</option>
+                <option value="Boys%20Love">Boys Love</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Girls%20Love">Girls Love</option>
+                <option value="Slice%20of%20Life">Slice of Life</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Romance">Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Erotica">Erotica</option>
+            </select>
+            <select name="sortorder" id="sort-order-dropdown" class="filter-dropdown">
+                <option value="asc">ASC</option>
+                <option value="desc">DESC</option>
+            </select>
+            <select name="sortBy" id="sort-by-dropdown" class="filter-dropdown"> 
+                <option value="ranking">RANKING</option>
+                <option value="title">TITLE </option>
+            </select>
+            </div>
+            <button class="search-btn" id="search-btn" onclick="searchFunc()"><i class="fa-solid fa-magnifying-glass fa-l"></i></button>
+            <h1 class="search-heading">SEARCH RESULTS </h1>
+        </div>
+  
+        <div class="grid-container" id="grid-container">
+            
+            
+        </div>
+    </div>
+        <div class="page-container" id="page-container"></div>
+    </section>
+    <div class="fav-side-bar">
+        <button class="fav-close-button">X</button>
+        <ul id="ul"></ul>
+    </div>
+</body>
+</html>
