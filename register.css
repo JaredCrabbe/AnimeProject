@@ -1,0 +1,140 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100%;
+    background-color: rgb(25, 25, 25);
+}
+
+
+.sign-in-container{
+    background-color: rgb(75, 75, 75);
+    width: 25%;
+    margin: 30px auto;
+    display: flex;
+    /* height: 700px; */
+}
+
+.sign-in-form{
+    margin: 0 auto;
+    width: 80%;
+}
+
+.intro{
+    padding: 20px;
+    color: rgb(175, 175, 175);
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-bottom: 0.5px solid rgba(44, 44, 44, 0.7);
+}
+
+.intro h1{
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 0.8rem;
+}
+
+.button-box{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.button-box button{
+    font-size: 1.5rem;
+    background-color: rgb(51, 51, 51);
+    color: rgb(175, 175, 175);
+    border: none;
+    box-shadow: 1px 1px black;
+    
+}
+
+.button-box button:hover{
+    opacity: 0.9;
+    transform: translateY(2px);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.line{
+    display:block; 
+    text-align: center;
+    width: 207%;        
+
+}
+.line h2{
+    font-size:15px; 
+    text-align:center; 
+    border-bottom:1px solid rgb(25, 25, 25); 
+    position:relative; 
+}
+
+.line h2 span { 
+    background-color: rgba(75, 75, 75); 
+    position: relative; 
+    top: 10px; 
+    padding: 0 10px;
+}
+
+.email-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+}
+
+label{
+    color:rgb(175, 175, 175);
+    font-size: 1.2rem;
+}
+
+.email-box input{
+    color:rgb(175, 175, 175);
+    font-size: 1.4rem;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    background-color: rgb(49, 49, 49);
+    border: none;
+}
+
+.account-btn{
+    font-size: 1rem;
+    margin-top: 1rem;
+    background-color: rgb(51, 51, 51);
+    border: none;
+    color:rgb(175, 175, 175);
+    padding: 2rem;
+}
+
+.account-btn:hover{
+    color: black;
+    background-color: white;
+}
+
+.login{
+    text-align: center;
+}
+
+.login-btn{
+    margin: 10px 0;
+    font-size: 1rem;
+    padding: .8rem 2rem;
+    background-color: rgb(75, 75, 75);
+    border: 2px black solid;
+}
+
+.login-btn:hover{
+    opacity: 0.8;
+
+    color: black;
+    background-color: white;
+}
