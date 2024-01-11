@@ -26,23 +26,6 @@ favClose.addEventListener("click", function() {
   pageWrapper.style.filter = "none";
 });
 
-// window.onload = function(){
-//     const ul = document.querySelector('#ul')
-//     ul.innerHTML = ""
-//     const favs = localStorage.getItem('favorites')
-//     if (favs) {
-//         const favoriteObj = JSON.parse(favs)
-
-//         for(let key in favoriteObj){
-//             const link = document.createElement('a')
-//             link.innerHTML = `${favoriteObj[key]}`
-//             ul.appendChild(link)
-//         }
-//         let favString = JSON.stringify(favoriteObj)
-//         localStorage.setItem('favorites', favString)
-//     }
-// }
-
 const rankingUrl =
   "https://anime-db.p.rapidapi.com/anime?page=1&size=10&sortBy=ranking&sortOrder=asc";
 const options = {
@@ -143,7 +126,7 @@ async function searchFunc(pageNumber = 1) {
 
   const response = await fetch(searchUrl, options);
   const result = await response.json();
-  console.log(searchUrl);
+  // console.log(searchUrl);
   console.log(result);
   pageCycler(result);
 
@@ -188,11 +171,11 @@ function pageCycler(obj) {
 
 function infoCreation(card) {
   const infoCard = document.querySelector(".info-card");
-  console.log(card);
+  // console.log(card);
   const titles = card.alternativeTitles.join(", ");
   const div = document.createElement("div");
   if (!infoCard) {
-    console.log(infoCard);
+    // console.log(infoCard);
     div.classList.add("info-card");
     pageContainer.appendChild(div);
     div.style.animation = "moveToCenter 500ms forwards";
@@ -230,7 +213,7 @@ function infoCreation(card) {
         </div>`;
 
     div.querySelector(".add-favourite").onclick = function() {
-      console.log(favorites);
+      // console.log(favorites);
       saveFavorites(favorites, card);
     };
   } else if (document.contains(infoCard)) {
@@ -247,31 +230,62 @@ function removeInfoCard() {
 
 let favCounter = 0;
 function saveFavorites(obj, card) {
+  const favAnime = new Object();
+
   let favName = card.title;
-  if (Object.values(obj).includes(favName)) return;
+  if (Object.values(obj).some(value => value && value.name === favName)) {
+    console.log("This name already exists in the object.");
+    return; // Exit the function if the name exists
+  }
   let newKey = "fav" + favCounter;
-  obj[newKey] = favName;
   favCounter++;
 
   let link = document.createElement("a");
   link.href = `${card.link}`;
   link.target = "_blank";
   link.title = `myanimelist: ${card.link}`;
-  link.textContent = obj[newKey];
+  link.textContent = favName;
+  link.className = "fav-link";
 
   const span = document.createElement("span");
   span.textContent = `${card.genres}`;
   span.className = "tooltip";
 
+  favAnime.name = favName;
+  favAnime.genres = card.genres;
+  obj[newKey] = { ...favAnime };
+  console.log(favAnime);
+  console.log(obj);
   link.appendChild(span);
 
   document.getElementById("ul").appendChild(link);
-
-  // let existingFavs = localStorage.getItem('favorites')
-  // let favsObj = existingFavs ? JSON.parse(existingFavs) : {}
-
-  // favsObj[newKey] = favName
-
-  // localStorage.setItem('favorites', favsObj)
-  // console.log('favorites')
 }
+
+// function saveToLocalStorage(obj) {
+//   localStorage.setItem("favoriteAnimes", JSON.stringify(obj));
+// }
+
+// function loadFromLocalStorage() {
+//   const storedData = localStorage.getItem("favoriteAnimes");
+//   return storedData ? JSON.parse(storedData) : {};
+// }
+
+// function displayFavorites(obj) {
+//   const div = document.querySelector(".fav-side-bar");
+//   div.innerHTML = "";
+//   Object.values(obj).forEach(fav => {
+//     let link = document.createElement("a");
+//     link.textContent = fav.name;
+//     link.className = "fav-link";
+//     div.appendChild(link);
+//   });
+// }
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   let favoriteAnime = loadFromLocalStorage();
+//   displayFavorites(favoriteAnime);
+// });
+
+// function addNewFavorite(obj, newFav) {
+//   saveToLocalStorage(obj);
+// }
