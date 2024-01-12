@@ -450,11 +450,11 @@ a.active {
   top: 0;
   right: 0;
   transform: translate(100%);
-  display: hidden;
+  display: none;
   background-color: rgb(25, 25, 25);
   text-align: center;
   color: rgb(175, 175, 175);
-  box-shadow: 100px 100px 100px white;
+  box-shadow: -5px 5px 20px -8px rgb(175, 175, 175);
 }
 
 .fav-close-button {
@@ -469,10 +469,12 @@ a.active {
   z-index: 1;
   font-size: 2rem;
   color: white;
+  box-shadow: -10px 5px 20px -8px rgb(175, 175, 175);
 }
 
 .fav-close-button:hover {
   cursor: pointer;
+  scale: 1.2;
 }
 
 .remove-fav-btn {

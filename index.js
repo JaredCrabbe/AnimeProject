@@ -27,7 +27,7 @@ favButton.addEventListener("click", function() {
 
 favClose.addEventListener("click", function() {
   sideBar.style = "transform: translate(100%)";
-  favCloseBtn.style.display = "hidden";
+  favCloseBtn.style.display = "none";
   favCloseBtn.style = "transform: translateX(100%)";
   pageWrapper.style.filter = "none";
 });
