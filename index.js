@@ -10,6 +10,7 @@ const pageContainer = document.getElementById("page-container");
 const pageWrapper = document.getElementById("wrapper");
 const favButton = document.querySelector(".fav-btn");
 const favClose = document.querySelector(".fav-close-button");
+const favLink = document.querySelector("fav-link");
 let sideBar = document.querySelector(".fav-side-bar");
 const favorites = {};
 
@@ -60,7 +61,7 @@ async function getRanked() {
       }
       div2.classList.add("slide-info");
       div2.classList.add("divWithEllipsis");
-      div2.innerHTML = `<a href="${anime.link}" target="_blank"><h1>${anime.title}</h1></a>
+      div2.innerHTML = `<h1 class="slider-title">${anime.title}</h1>
                     <p>${anime.type} &#160&#160&#160 Rank #${anime.ranking} &#160&#160&#160&#160 ${anime.status}</p>
                         <br>
                         <br>
@@ -73,6 +74,11 @@ async function getRanked() {
 
       container.appendChild(div);
       container.appendChild(div2);
+
+      const sliderTitle = div2.querySelector(".slider-title");
+      sliderTitle.addEventListener("click", function() {
+        infoCreation(anime);
+      });
     });
   } catch (error) {
     console.error(error);
@@ -211,12 +217,17 @@ function infoCreation(card) {
             <br>
             <br>
             <button class="add-favourite">➕</button>
-            <button>▶️</button>
+            <button class="watch-link">▶️</button>
         </div>
         <div class="synopsis-container">
             <h2>Synopsis</h2>
             <p>${card.synopsis}</p>
         </div>`;
+
+    div.querySelector(".watch-link").onclick = function() {
+      const watchUrl = `https://zorox.to/filter?keyword=${card.title}`;
+      window.open(watchUrl, "_blank");
+    };
 
     div.querySelector(".add-favourite").onclick = function() {
       // console.log(favorites);
@@ -251,10 +262,7 @@ function saveFavorites(card) {
   let newKey = "fav" + favCounter;
   favCounter++;
 
-  let link = document.createElement("a");
-  link.href = `${card.link}`;
-  link.target = "_blank";
-  link.title = `myanimelist: ${card.link}`;
+  let link = document.createElement("li");
   link.textContent = favName;
   link.className = "fav-link";
 
@@ -263,12 +271,19 @@ function saveFavorites(card) {
   span.className = "tooltip";
 
   const favAnime = {
-    name: favName,
+    title: favName,
     genres: card.genres,
+    synopsis: card.synopsis,
+    alternativeTitles: card.alternativeTitles,
+    status: card.status,
+    ranking: card.ranking,
+    type: card.type,
+    image: card.image,
     link: card.link
   };
   favoritesObj[newKey] = favAnime;
   console.log(favoritesObj);
+
   link.appendChild(span);
 
   document.getElementById("ul").appendChild(link);
@@ -291,12 +306,9 @@ function loadFavorites() {
   for (let key in favoritesObj) {
     if (favoritesObj.hasOwnProperty(key)) {
       const fav = favoritesObj[key];
-      const link = document.createElement("a");
+      const link = document.createElement("li");
 
-      link.href = `${fav.link}`; // Replace with actual link
-      link.target = "_blank";
-      link.title = `myanimelist: ${fav.link}`; // Replace with actual link
-      link.textContent = fav.name;
+      link.textContent = fav.title;
       link.className = "fav-link";
 
       const span = document.createElement("span");
@@ -313,7 +325,7 @@ function loadFavorites() {
         event.stopPropagation();
         event.preventDefault();
 
-        link.style = "transform: translateY(100%)";
+        link.style = "transform: translateXx(100%)";
 
         // Remove the favorite from the favorites object
         delete favoritesObj[key];
@@ -329,6 +341,10 @@ function loadFavorites() {
       link.appendChild(span);
 
       document.getElementById("ul").appendChild(link);
+
+      link.addEventListener("click", function() {
+        infoCreation(fav);
+      });
     }
   }
 }

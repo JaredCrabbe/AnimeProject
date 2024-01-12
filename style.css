@@ -138,7 +138,7 @@ header {
   font-size: 3rem;
   color: rgb(214, 213, 213);
   text-shadow: 2px 2px black;
-  transition: font-size 200ms ease-in-out;
+  width: fit-content;
 }
 
 .slide-info a {
@@ -150,7 +150,7 @@ header {
 }
 
 .slide-info h1:hover {
-  font-size: 3.2rem;
+  cursor: pointer;
 }
 
 .slide-info p {
@@ -451,22 +451,24 @@ a.active {
   right: 0;
   transform: translate(100%);
   display: hidden;
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(25, 25, 25);
   text-align: center;
   color: rgb(175, 175, 175);
+  box-shadow: 100px 100px 100px white;
 }
 
 .fav-close-button {
   position: absolute;
   top: 0%;
   left: -7%;
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(25, 25, 25);
   border: none;
   width: 30px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   z-index: 1;
   font-size: 2rem;
+  color: white;
 }
 
 .fav-close-button:hover {
@@ -502,20 +504,19 @@ a.active {
   /* overflow-x: hidden; */
 }
 
-#ul a + a {
+#ul li + li {
   margin-top: 5px;
 }
 
-#ul a {
+#ul li {
   display: block;
-  /* border: 1px solid black; */
   padding: 5px;
   color: rgb(214, 213, 213);
   background-color: rgb(17, 17, 17);
   width: 100%;
 }
 
-#ul a:hover {
+#ul li:hover {
   cursor: pointer;
   opacity: 0.9;
   transform: translate(5px);
@@ -543,7 +544,7 @@ a.active {
   border-color: transparent transparent transparent rgb(17, 17, 17);
 }
 
-a:hover .tooltip {
+li:hover .tooltip {
   visibility: visible;
 }
 
