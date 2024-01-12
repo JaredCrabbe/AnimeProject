@@ -13,16 +13,21 @@ const favClose = document.querySelector(".fav-close-button");
 let sideBar = document.querySelector(".fav-side-bar");
 const favorites = {};
 
+window.addEventListener("load", loadFavorites);
+
+const favCloseBtn = document.querySelector(".fav-close-button");
 favButton.addEventListener("click", function() {
   sideBar.style = "transform: translate(0%)";
   sideBar.style.display = "block";
+  favCloseBtn.style = "transform: translateX(0%)";
   sideBar.style.transition = "transform 500ms ease-in";
   pageWrapper.style.filter = "blur(20px)";
 });
 
 favClose.addEventListener("click", function() {
   sideBar.style = "transform: translate(100%)";
-  sideBar.style.display = "hidden";
+  favCloseBtn.style.display = "hidden";
+  favCloseBtn.style = "transform: translateX(100%)";
   pageWrapper.style.filter = "none";
 });
 
@@ -54,6 +59,7 @@ async function getRanked() {
         div2.setAttribute("data-active", "");
       }
       div2.classList.add("slide-info");
+      div2.classList.add("divWithEllipsis");
       div2.innerHTML = `<a href="${anime.link}" target="_blank"><h1>${anime.title}</h1></a>
                     <p>${anime.type} &#160&#160&#160 Rank #${anime.ranking} &#160&#160&#160&#160 ${anime.status}</p>
                         <br>
@@ -214,7 +220,7 @@ function infoCreation(card) {
 
     div.querySelector(".add-favourite").onclick = function() {
       // console.log(favorites);
-      saveFavorites(favorites, card);
+      saveFavorites(card);
     };
   } else if (document.contains(infoCard)) {
     console.log("info-card already exists");
@@ -228,12 +234,17 @@ function removeInfoCard() {
   pageWrapper.style.filter = "none";
 }
 
-let favCounter = 0;
-function saveFavorites(obj, card) {
-  const favAnime = new Object();
+function saveFavorites(card) {
+  const storedFavorites = localStorage.getItem("favorites");
+  const favoritesObj = storedFavorites ? JSON.parse(storedFavorites) : {};
+
+  const storedFavCounter = localStorage.getItem("favCounter");
+  let favCounter = storedFavCounter ? parseInt(storedFavCounter) : 0;
 
   let favName = card.title;
-  if (Object.values(obj).some(value => value && value.name === favName)) {
+  if (
+    Object.values(favoritesObj).some(value => value && value.name === favName)
+  ) {
     console.log("This name already exists in the object.");
     return; // Exit the function if the name exists
   }
@@ -251,41 +262,73 @@ function saveFavorites(obj, card) {
   span.textContent = `${card.genres}`;
   span.className = "tooltip";
 
-  favAnime.name = favName;
-  favAnime.genres = card.genres;
-  obj[newKey] = { ...favAnime };
-  console.log(favAnime);
-  console.log(obj);
+  const favAnime = {
+    name: favName,
+    genres: card.genres,
+    link: card.link
+  };
+  favoritesObj[newKey] = favAnime;
+  console.log(favoritesObj);
   link.appendChild(span);
 
   document.getElementById("ul").appendChild(link);
+
+  localStorage.setItem("favorites", JSON.stringify(favoritesObj));
+
+  localStorage.setItem("favCounter", favCounter.toString());
+
+  // Merge the new favorite with the existing favorites
+
+  // Save the merged object back to localStorage
+  // localStorage.setItem("favorites", JSON.stringify(favoritesObj));
 }
 
-// function saveToLocalStorage(obj) {
-//   localStorage.setItem("favoriteAnimes", JSON.stringify(obj));
-// }
+function loadFavorites() {
+  const storedFavorites = localStorage.getItem("favorites");
 
-// function loadFromLocalStorage() {
-//   const storedData = localStorage.getItem("favoriteAnimes");
-//   return storedData ? JSON.parse(storedData) : {};
-// }
+  const favoritesObj = storedFavorites ? JSON.parse(storedFavorites) : {};
 
-// function displayFavorites(obj) {
-//   const div = document.querySelector(".fav-side-bar");
-//   div.innerHTML = "";
-//   Object.values(obj).forEach(fav => {
-//     let link = document.createElement("a");
-//     link.textContent = fav.name;
-//     link.className = "fav-link";
-//     div.appendChild(link);
-//   });
-// }
+  for (let key in favoritesObj) {
+    if (favoritesObj.hasOwnProperty(key)) {
+      const fav = favoritesObj[key];
+      const link = document.createElement("a");
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   let favoriteAnime = loadFromLocalStorage();
-//   displayFavorites(favoriteAnime);
-// });
+      link.href = `${fav.link}`; // Replace with actual link
+      link.target = "_blank";
+      link.title = `myanimelist: ${fav.link}`; // Replace with actual link
+      link.textContent = fav.name;
+      link.className = "fav-link";
 
-// function addNewFavorite(obj, newFav) {
-//   saveToLocalStorage(obj);
-// }
+      const span = document.createElement("span");
+
+      span.textContent = fav.genres;
+      span.className = "tooltip";
+
+      const button = document.createElement("button");
+
+      button.textContent = "X";
+      button.className = "remove-fav-btn";
+
+      button.addEventListener("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        link.style = "transform: translateY(100%)";
+
+        // Remove the favorite from the favorites object
+        delete favoritesObj[key];
+
+        // Update localStorage with the new favorites object
+        localStorage.setItem("favorites", JSON.stringify(favoritesObj));
+
+        // Remove the link element from the DOM
+        document.getElementById("ul").removeChild(link);
+      });
+
+      link.appendChild(button);
+      link.appendChild(span);
+
+      document.getElementById("ul").appendChild(link);
+    }
+  }
+}
