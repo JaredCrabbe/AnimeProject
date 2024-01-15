@@ -25,26 +25,35 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  overflow: hidden;
+  z-index: 12;
 }
 
 .nav-list {
   display: flex;
   align-items: center;
+  list-style-type: none;
 }
 
-.nav-item {
+/* .nav-item {
   list-style: none;
   color: rgb(175, 175, 175);
   padding: 10px;
-}
+} */
 
-.nav-item + .nav-item {
+.nav-link + .nav-link {
   margin-left: 10px;
 }
 
 .nav-link {
+  list-style: none;
   text-decoration: none;
+  padding: 10px;
   color: rgb(175, 175, 175);
+}
+
+.icon {
+  display: none;
 }
 
 .nav-link:hover {
@@ -124,6 +133,21 @@ header {
   z-index: 10;
   opacity: 0;
   transition: 500ms ease-in-out;
+}
+
+.fade-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% -50%);
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 12;
+  background-color: rgb(17, 17, 17);
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .slide-info {
@@ -616,6 +640,7 @@ li:hover .tooltip {
   }
   .info-close-button {
     left: 93%;
+    position: sticky;
     color: white;
   }
 }
@@ -656,6 +681,7 @@ li:hover .tooltip {
     text-align: center;
     left: 0;
     width: 100%;
+    /* height: 100px; */
   }
   .slide-info h1 {
     margin: 40px auto;
@@ -668,12 +694,14 @@ li:hover .tooltip {
   }
   #recommended-slider {
     width: 80%;
+    height: 200px;
   }
   #recommended-slider::before {
-    filter: blur(10px);
+    filter: blur(0px);
     width: 100%;
   }
   .carousel-button {
+    top: 25%;
     font-size: 3rem;
   }
 }
@@ -684,5 +712,15 @@ li:hover .tooltip {
   .carousel-button {
     font-size: 2rem;
     padding: 0;
+  }
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+  }
+  .fav-side-bar {
+    width: 50%;
+  }
+  .fav-close-button {
+    left: -15%;
   }
 }

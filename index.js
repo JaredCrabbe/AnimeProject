@@ -232,6 +232,8 @@ function infoCreation(card) {
     div.querySelector(".add-favourite").onclick = function() {
       // console.log(favorites);
       saveFavorites(card);
+      showMessage();
+      toggleSymbol(this);
     };
   } else if (document.contains(infoCard)) {
     console.log("info-card already exists");
@@ -254,7 +256,7 @@ function saveFavorites(card) {
 
   let favName = card.title;
   if (
-    Object.values(favoritesObj).some(value => value && value.name === favName)
+    Object.values(favoritesObj).some(value => value && value.title === favName)
   ) {
     console.log("This name already exists in the object.");
     return; // Exit the function if the name exists
@@ -283,6 +285,29 @@ function saveFavorites(card) {
   };
   favoritesObj[newKey] = favAnime;
   console.log(favoritesObj);
+
+  const button = document.createElement("button");
+
+  button.textContent = "X";
+  button.className = "remove-fav-btn";
+
+  button.addEventListener("click", function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    link.style = "transform: translateXx(100%)";
+
+    // Remove the favorite from the favorites object
+    delete favoritesObj[newKey];
+
+    // Update localStorage with the new favorites object
+    localStorage.setItem("favorites", JSON.stringify(favoritesObj));
+
+    // Remove the link element from the DOM
+    document.getElementById("ul").removeChild(link);
+  });
+
+  link.appendChild(button);
 
   link.appendChild(span);
 
@@ -348,3 +373,34 @@ function loadFavorites() {
     }
   }
 }
+
+function showMessage() {
+  var message = document.getElementById("message");
+  message.style.display = "block";
+  message.style.opacity = 1;
+  setTimeout(function() {
+    message.style.opacity = 0;
+    setTimeout(function() {
+      message.style.display = "none";
+    }, 1000); // Wait for the fade out to finish
+  }, 1000); // Message display duration
+}
+
+function toggleSymbol(button) {
+  if (button.innerHTML === "➕") {
+    button.innerHTML = "✔️"; // Change to tick mark
+  } else {
+    button.innerHTML = "➕"; // Change back to plus sign
+  }
+}
+// function myFunction() {
+//   var x = document.getElementById("myTopnav");
+//   var bg = document.querySelector(".background"); // Get the background overlay
+//   if (x.className === "nav-bar") {
+//     x.className += " responsive";
+//     bg.style.display = "block"; // Show the background overlay
+//   } else {
+//     x.className = "nav-bar";
+//     bg.style.display = "none"; // Hide the background overlay
+//   }
+// }
