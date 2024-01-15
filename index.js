@@ -69,7 +69,7 @@ async function getRanked() {
                         <br>
                         <br>
                         <br>
-                    <p>${anime.synopsis}
+                    <p class="info-synopsis">${anime.synopsis}
                 `;
 
       container.appendChild(div);

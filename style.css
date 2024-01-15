@@ -188,7 +188,7 @@ div[class^="slide"][data-active] {
 .carousel-button:focus {
   color: white;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .next {
@@ -590,10 +590,33 @@ li:hover .tooltip {
   .container {
     max-width: 1166px;
   }
+  .slide-image {
+    background-size: cover;
+  }
+  .info-card {
+    max-height: 600px;
+    gap: 2px;
+    margin: 0;
+  }
+  .synopsis-container {
+    overflow-y: scroll;
+  }
 }
 @media (max-width: 1100px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .container {
+    max-width: 944px;
+  }
+  .info-card {
+    display: block;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  .info-close-button {
+    left: 93%;
+    color: white;
   }
 }
 @media (max-width: 800px) {
@@ -605,29 +628,61 @@ li:hover .tooltip {
     margin: 25px auto;
   }
   #search-bar {
-    width: 70%;
+    width: 80%;
   }
   .search-btn {
     left: 32%;
     top: -0px;
   }
   .filter-box {
-    width: 70%;
+    width: 80%;
   }
   .filter-dropdown {
     font-size: 1rem;
   }
   .slide-image {
     display: none;
+    position: absolute;
+    width: 80%;
+    height: 60%;
+    background-position: center;
+    background-size: cover;
+    left: 10%;
   }
   .slide-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     left: 0;
     width: 100%;
+  }
+  .slide-info h1 {
+    margin: 40px auto;
+  }
+  .info-synopsis {
+    display: none;
   }
   #slider {
     text-align: center;
   }
   #recommended-slider {
-    width: 70%;
+    width: 80%;
+  }
+  #recommended-slider::before {
+    filter: blur(10px);
+    width: 100%;
+  }
+  .carousel-button {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 500px) {
+  .slide-info h1 {
+    font-size: 1.5rem;
+  }
+  .carousel-button {
+    font-size: 2rem;
+    padding: 0;
   }
 }
