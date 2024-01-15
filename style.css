@@ -6,13 +6,21 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background-col1: rgb(25, 25, 25);
+  --text-col1: rgb(175, 175, 175);
+  --accent-col1: rgb(75, 75, 75);
+  --accent-col2: rgb(17, 17, 17);
+  --accent-col3: rgb(50, 50, 50);
+}
+
 body {
   height: 100%;
-  background-color: rgb(25, 25, 25);
+  background-color: var(--background-col1);
 }
 
 header {
-  background-color: rgb(25, 25, 25);
+  background-color: var(--background-col1);
 }
 
 .container {
@@ -37,7 +45,7 @@ header {
 
 /* .nav-item {
   list-style: none;
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
   padding: 10px;
 } */
 
@@ -49,7 +57,7 @@ header {
   list-style: none;
   text-decoration: none;
   padding: 10px;
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
 }
 
 .icon {
@@ -63,13 +71,13 @@ header {
 .logo {
   font-size: 1.5rem;
   padding: 5px;
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
 }
 
 .recommended-sect {
   height: 350px;
   width: 100%;
-  background-color: rgb(75, 75, 75);
+  background-color: var(--accent-col1);
 }
 
 #recommended-slider {
@@ -144,7 +152,7 @@ header {
   opacity: 0;
   transition: opacity 1s ease-in-out;
   z-index: 12;
-  background-color: rgb(17, 17, 17);
+  background-color: var(--accent-col2);
   color: white;
   padding: 20px;
   border-radius: 20px;
@@ -160,7 +168,7 @@ header {
 
 .slide-info h1 {
   font-size: 3rem;
-  color: rgb(214, 213, 213);
+  color: var(--text-col1);
   text-shadow: 2px 2px black;
   width: fit-content;
 }
@@ -179,7 +187,7 @@ header {
 
 .slide-info p {
   font-size: 1.2rem;
-  color: rgb(255, 255, 255);
+  color: var(--text-col1);
   text-shadow: 1px 1px black;
 }
 
@@ -205,14 +213,12 @@ div[class^="slide"][data-active] {
   transform: translateY(-50%);
   color: rgba(0, 0, 0, 0.75);
   border-radius: .25rem;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 .carousel-button:hover,
 .carousel-button:focus {
   color: white;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 .next {
@@ -232,13 +238,13 @@ div[class^="slide"][data-active] {
   margin: 30px auto;
   text-align: center;
   outline: none;
-  background-color: rgb(50, 50, 50);
+  background-color: var(--accent-col3);
   border: 1px solid black;
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
 }
 
 .search-btn {
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
   opacity: 0.6;
   font-size: 2rem;
   border: none;
@@ -265,8 +271,8 @@ div[class^="slide"][data-active] {
   width: 30%;
   font-size: 1.1rem;
   text-align: center;
-  background-color: rgb(50, 50, 50);
-  color: rgb(175, 175, 175);
+  background-color: var(--accent-col3);
+  color: var(--text-col1);
   border: none;
 }
 
@@ -294,7 +300,7 @@ div[class^="slide"][data-active] {
   height: 290px;
   margin: 20px 0;
   border-radius: 15px;
-  box-shadow: 1px 1px rgb(25, 25, 25);
+  box-shadow: 1px 1px var(--background-col1);
   text-align: center;
 }
 
@@ -335,7 +341,7 @@ div[class^="slide"][data-active] {
 }
 
 a.active {
-  color: blue;
+  color: rgba(17, 48, 224, 0.856);
   text-decoration: underline;
 }
 
@@ -349,7 +355,7 @@ a.active {
 }
 
 .search-heading {
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
 }
 
 .info-card {
@@ -381,7 +387,7 @@ a.active {
 
 .info-close-button:hover {
   cursor: pointer;
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
 }
 
 .image-container img {
@@ -391,19 +397,19 @@ a.active {
 }
 
 .titles-container {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--accent-col3);
   border-radius: 20px;
   margin-right: 4px;
   margin-top: 4px;
   padding: 10px;
-  border: 0.5px solid rgb(17, 17, 17);
+  border: 0.5px solid var(--accent-col2);
   text-align: left;
   font-size: 1.2rem;
 }
 
 .titles-container p:nth-of-type(1) {
   padding-top: 40px;
-  border-bottom: 1px solid rgb(50, 50, 50);
+  border-bottom: 1px solid var(--accent-col3);
 }
 
 .titles-container h1 {
@@ -413,17 +419,17 @@ a.active {
 
 .titles-container a {
   text-align: center;
-  color: rgb(175, 175, 175);
+  color: var(--text-col1);
 }
 
 .synopsis-container {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--accent-col3);
   border-radius: 20px;
   margin-right: 4px;
   margin-bottom: 4px;
   margin-top: 4px;
   padding: 10px;
-  border: 0.5px solid rgb(17, 17, 17);
+  border: 0.5px solid var(--accent-col2);
   font-size: 1.2rem;
 }
 
@@ -434,7 +440,7 @@ a.active {
 }
 
 .more-info--container {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--accent-col3);
   border-radius: 20px;
   margin-right: 4px;
   margin-bottom: 4px;
@@ -446,7 +452,7 @@ a.active {
 .more-info--container button {
   width: 45%;
   border-radius: 20px;
-  background-color: rgb(25, 25, 25);
+  background-color: var(--background-col1);
   color: white;
   font-size: 1rem;
   height: 21px;
@@ -459,7 +465,7 @@ a.active {
 }
 
 .more-info--container p {
-  border-bottom: 1px solid rgb(50, 50, 50);
+  border-bottom: 1px solid var(--accent-col3);
 }
 
 #not-blurred {
@@ -475,17 +481,17 @@ a.active {
   right: 0;
   transform: translate(100%);
   display: none;
-  background-color: rgb(25, 25, 25);
+  background-color: var(--background-col1);
   text-align: center;
-  color: rgb(175, 175, 175);
-  box-shadow: -5px 5px 20px -8px rgb(175, 175, 175);
+  color: var(--text-col1);
+  box-shadow: -5px 5px 20px -8px var(--text-col1);
 }
 
 .fav-close-button {
   position: absolute;
   top: 0%;
   left: -7%;
-  background-color: rgb(25, 25, 25);
+  background-color: var(--background-col1);
   border: none;
   width: 30px;
   border-top-left-radius: 10px;
@@ -493,7 +499,7 @@ a.active {
   z-index: 1;
   font-size: 2rem;
   color: white;
-  box-shadow: -10px 5px 20px -8px rgb(175, 175, 175);
+  box-shadow: -10px 5px 20px -8px var(--text-col1);
 }
 
 .fav-close-button:hover {
@@ -505,7 +511,7 @@ a.active {
   z-index: 11;
   position: absolute;
   left: 4%;
-  background-color: rgb(50, 50, 50);
+  background-color: var(--accent-col3);
   border: none;
   padding: 5px;
   /* top: 5px; */
@@ -527,7 +533,6 @@ a.active {
 #ul {
   list-style-type: none;
   margin-top: 20px;
-  /* overflow-x: hidden; */
 }
 
 #ul li + li {
@@ -537,8 +542,8 @@ a.active {
 #ul li {
   display: block;
   padding: 5px;
-  color: rgb(214, 213, 213);
-  background-color: rgb(17, 17, 17);
+  color: var(--text-col1);
+  background-color: var(--accent-col2);
   width: 100%;
 }
 
@@ -551,8 +556,8 @@ a.active {
 .tooltip {
   visibility: hidden;
   position: absolute;
-  background-color: rgb(17, 17, 17);
-  color: rgb(175, 175, 175);
+  background-color: var(--accent-col2);
+  color: var(--text-col1);
   padding: 5px;
   top: 0px;
   right: 105%;
@@ -567,7 +572,7 @@ a.active {
   margin-top: -7px;
   border-width: 7px;
   border-style: solid;
-  border-color: transparent transparent transparent rgb(17, 17, 17);
+  border-color: transparent transparent transparent var(--accent-col2);
 }
 
 li:hover .tooltip {
@@ -640,8 +645,17 @@ li:hover .tooltip {
   }
   .info-close-button {
     left: 93%;
-    position: sticky;
     color: white;
+  }
+}
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+@media (max-width: 1000px) {
+  .container {
+    max-width: 900px;
   }
 }
 @media (max-width: 800px) {
@@ -685,6 +699,7 @@ li:hover .tooltip {
   }
   .slide-info h1 {
     margin: 40px auto;
+    font-size: 1.5rem;
   }
   .info-synopsis {
     display: none;
