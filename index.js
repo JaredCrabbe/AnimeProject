@@ -326,6 +326,10 @@ function saveFavorites(card) {
 
   localStorage.setItem("favCounter", favCounter.toString());
 
+  link.addEventListener("click", function() {
+    infoCreation(favoritesObj[newKey]);
+  });
+
   // Merge the new favorite with the existing favorites
 
   // Save the merged object back to localStorage
