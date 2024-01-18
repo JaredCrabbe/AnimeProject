@@ -11,6 +11,7 @@ const pageWrapper = document.getElementById("wrapper");
 const favButton = document.querySelector(".fav-btn");
 const favClose = document.querySelector(".fav-close-button");
 const favLink = document.querySelector("fav-link");
+const message = document.querySelector("#message");
 let sideBar = document.querySelector(".fav-side-bar");
 const favorites = {};
 
@@ -50,7 +51,7 @@ async function getRanked() {
     result.data.forEach((anime, index) => {
       const div = document.createElement("div");
       const div2 = document.createElement("div");
-
+      const title = anime.title;
       div.classList.add(`slide-image`);
       div.style.backgroundImage = `url(${anime.image})`;
 
@@ -74,7 +75,11 @@ async function getRanked() {
 
       container.appendChild(div);
       container.appendChild(div2);
-
+      // container.querySelector(".slider-add-favourite").onclick = function() {
+      //   saveFavorites(anime);
+      //   showMessage();
+      //   toggleSymbol(this);
+      // };
       const sliderTitle = div2.querySelector(".slider-title");
       sliderTitle.addEventListener("click", function() {
         infoCreation(anime);
@@ -250,6 +255,7 @@ function removeInfoCard() {
 function saveFavorites(card) {
   const storedFavorites = localStorage.getItem("favorites");
   const favoritesObj = storedFavorites ? JSON.parse(storedFavorites) : {};
+  const addBtn = document.querySelector(".add-favourite");
 
   const storedFavCounter = localStorage.getItem("favCounter");
   let favCounter = storedFavCounter ? parseInt(storedFavCounter) : 0;
@@ -258,9 +264,12 @@ function saveFavorites(card) {
   if (
     Object.values(favoritesObj).some(value => value && value.title === favName)
   ) {
+    toggleSymbol(addBtn);
+    message.textContent = "Already in favorites";
     console.log("This name already exists in the object.");
     return; // Exit the function if the name exists
   }
+  message.textContent = "Added to favorites";
   let newKey = "fav" + favCounter;
   favCounter++;
 
@@ -321,6 +330,7 @@ function saveFavorites(card) {
 
   // Save the merged object back to localStorage
   // localStorage.setItem("favorites", JSON.stringify(favoritesObj));
+  return favoritesObj;
 }
 
 function loadFavorites() {
@@ -375,9 +385,9 @@ function loadFavorites() {
 }
 
 function showMessage() {
-  var message = document.getElementById("message");
   message.style.display = "block";
   message.style.opacity = 1;
+  message.style.zIndex = "15";
   setTimeout(function() {
     message.style.opacity = 0;
     setTimeout(function() {
@@ -393,14 +403,3 @@ function toggleSymbol(button) {
     button.innerHTML = "➕"; // Change back to plus sign
   }
 }
-// function myFunction() {
-//   var x = document.getElementById("myTopnav");
-//   var bg = document.querySelector(".background"); // Get the background overlay
-//   if (x.className === "nav-bar") {
-//     x.className += " responsive";
-//     bg.style.display = "block"; // Show the background overlay
-//   } else {
-//     x.className = "nav-bar";
-//     bg.style.display = "none"; // Hide the background overlay
-//   }
-// }

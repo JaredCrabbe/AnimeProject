@@ -8,7 +8,7 @@
 
 :root {
   --background-col1: rgb(25, 25, 25);
-  --text-col1: rgb(175, 175, 175);
+  --text-col1: rgb(225, 225, 225);
   --accent-col1: rgb(75, 75, 75);
   --accent-col2: rgb(17, 17, 17);
   --accent-col3: rgb(50, 50, 50);
@@ -144,7 +144,7 @@ header {
 }
 
 .fade-message {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50% -50%);
@@ -449,7 +449,8 @@ a.active {
   border: 0.5px solid rgb(17, 17, 17);
 }
 
-.more-info--container button {
+.add-favourite,
+.watch-link {
   width: 45%;
   border-radius: 20px;
   background-color: var(--background-col1);
@@ -459,7 +460,8 @@ a.active {
   border: none;
 }
 
-.more-info--container button:hover {
+.add-favourite:hover,
+.watch-link:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -737,5 +739,31 @@ li:hover .tooltip {
   }
   .fav-close-button {
     left: -15%;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-col1: rgb(250, 250, 250);
+    --text-col1: rgb(28, 28, 28);
+    --accent-col1: rgb(235, 235, 235);
+    --accent-col2: rgb(215, 215, 215);
+    --accent-col3: rgb(190, 190, 190);
+  }
+  #recommended-slider::after {
+    background-image: linear-gradient(
+      to bottom,
+      var(--accent-col1) 0,
+      rgba(225, 225, 225, 0.1) 50%,
+      var(--accent-col1) 100%
+    );
+  }
+  .slide-info p {
+    text-shadow: 1px 1px grey;
+  }
+  .slide-info h1 {
+    text-shadow: 2px 2px grey;
+  }
+  .fav-close-button {
+    color: black;
   }
 }
