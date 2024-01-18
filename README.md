@@ -15,7 +15,7 @@ Weeb-List is a personal project developed to learn JavaScript, CSS3, and HTML5. 
 
 ##sneak peak
 
-[WeebList(https://jaredcrabbe.github.io/AnimeProject/#)]
+[WeebList](https://jaredcrabbe.github.io/AnimeProject/#)
 
 ## Project Setup
 
