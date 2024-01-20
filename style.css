@@ -166,6 +166,10 @@ header {
   overflow: scroll;
 }
 
+.slide-info::-webkit-scrollbar {
+  display: none;
+}
+
 .slide-info h1 {
   font-size: 3rem;
   color: var(--text-col1);
@@ -388,6 +392,10 @@ a.active {
 .info-close-button:hover {
   cursor: pointer;
   color: var(--text-col1);
+}
+
+.image-container {
+  border: 1px solid black;
 }
 
 .image-container img {
@@ -643,7 +651,23 @@ li:hover .tooltip {
   .info-card {
     display: block;
     overflow-y: scroll;
-    width: 100%;
+    width: 90%;
+  }
+  .titles-container {
+    margin-top: 2px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
+  .more-info--container {
+    margin-top: 2px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .synopsis-container {
+    margin-top: 2px;
+    margin-left: 0;
+    margin-right: 0;
   }
   .info-close-button {
     left: 93%;
