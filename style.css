@@ -773,12 +773,16 @@ li:hover .tooltip {
     --accent-col2: rgb(215, 215, 215);
     --accent-col3: rgb(190, 190, 190);
   }
+  .nav-bar {
+    width: 100%;
+    border-bottom: 2px solid black;
+  }
   #recommended-slider::after {
     background-image: linear-gradient(
       to bottom,
-      var(--accent-col1) 0,
+      var(--accent-col3) 0,
       rgba(225, 225, 225, 0.1) 50%,
-      var(--accent-col1) 100%
+      var(--accent-col3) 100%
     );
   }
   .slide-info p {
